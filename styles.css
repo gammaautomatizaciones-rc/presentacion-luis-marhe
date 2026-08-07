@@ -211,6 +211,31 @@ footer{
 }
 footer p{margin-top:.7rem;color:var(--gris);font-size:.85rem}
 
+/* ── botón de pantalla completa ──
+   Existe para que al mostrarla NO se vea la barra del navegador: el blanco de arriba
+   arruina el diseño oscuro cuando se la mostrás a un cliente. */
+.fs-btn{
+  position:fixed;top:1rem;right:1rem;z-index:50;
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(15,15,15,.82);
+  border:1px solid var(--linea);
+  color:var(--blanco);
+  font-family:inherit;font-weight:700;font-size:.8rem;
+  padding:.6rem .9rem;border-radius:.5rem;
+  cursor:pointer;backdrop-filter:blur(6px);
+  transition:border-color .15s ease, background .15s ease;
+}
+.fs-btn:hover{border-color:var(--amarillo);background:rgba(15,15,15,.95)}
+.fs-btn svg{width:1.1rem;height:1.1rem;fill:none;stroke:var(--amarillo);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fs-btn[hidden]{display:none}
+/* En pantalla completa el botón sobra: ya está a pantalla completa. */
+:fullscreen .fs-btn{opacity:0;pointer-events:none}
+/* En celular solo el ícono, el texto ocupa media pantalla */
+@media (max-width:30rem){
+  .fs-btn span{display:none}
+  .fs-btn{padding:.6rem}
+}
+
 /* ── entrada suave ── */
 .reveal{opacity:0;transform:translateY(1.2rem)}
 .reveal.on{opacity:1;transform:none;transition:opacity .5s ease, transform .5s ease}
